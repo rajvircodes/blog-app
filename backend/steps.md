@@ -1,0 +1,23 @@
+<!-- Steps to setup the project -->
+# Blog Project Setup
+1. setup frontend with tailwind css
+    
+2. setup backend with express and database connection
+    [package :  
+    - express
+    - mongoose
+    - bcrypt
+    - dotenv
+    - jsonwebtoken]
+   
+
+3. setup database connection and create user model
+[package : mongoose]
+    - install mongodb and create a database
+    - install mongoose connect to the database 
+        - function connectDB()
+    - connect to the database in the backend
+
+4. crete a schema and model for the user 
+    [package : validator]
+    schema with name, email and password fields

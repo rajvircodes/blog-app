@@ -21,3 +21,11 @@
 4. crete a schema and model for the user 
     [package : validator]
     schema with name, email and password fields
+5. Create a user controller 
+    - get data from req.body
+    - validate the data 
+    - password hashing with bcrypt
+    - create the user 
+6. create a route for user registration 
+    - POST /api/users/register
+    - call the user controller function

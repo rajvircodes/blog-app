@@ -1,6 +1,4 @@
 import mongoose  from "mongoose";
-import isEmail from "validator/lib/isEmail";
-
 const userSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -10,29 +8,14 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
         unique:true,
-        validate:{
-            validator:isEmail,
-            message: props => `${props.value} is not a validate email address`
-        }
+        trim:true,
+        lowercase:true,
+        match: [/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Please fill a valid email address']
 
-    },
-    phone:{
-        type:String,
-        required:true,
-        unique:true,
-    },
-    photo:{
-        type:String,
-        required:true
-    },
-    education:{
-        type:String,
-        required:true
     },
     password:{
         type:String,
         required:true,
-        unique:true,
         select:false,
         minlength:8
     },
@@ -40,8 +23,15 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
         enum:['user', 'admin'],
+        default:'user'
+    },
+    photo:{
+        type:String,
+        required:true
+
     }
 }, {timestamps:true})
 
 
-export const User = mongoose.model('User', userSchema)
+ const User = mongoose.model('User', userSchema)
+ export default User

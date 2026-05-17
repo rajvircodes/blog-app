@@ -3,9 +3,10 @@ import express from 'express'
 const app = express()
 import connectDB from './src/config/db.js'
 import userRouter from './src/routes/user.routes.js'
+import morgan from 'morgan'
 // port
 const port = process.env.PORT
-
+app.use(morgan('dev'))
 
 // Health checker
 app.get('/', (req, res)=>{

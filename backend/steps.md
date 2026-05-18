@@ -29,3 +29,7 @@
 6. create a route for user registration 
     - POST /api/users/register
     - call the user controller function
+7. hash password before saving to the database
+    - use bcrypt to hash the password before saving the user to the database
+8. create token and send it to the client
+    - use cookies to store the token in the client

@@ -1,6 +1,6 @@
 import User from '../model/user.model.js'
-import bcrypt from 'bcrypt'
-
+import jwt from 'jsonwebtoken'
+import 'dotenv/config'
 const register = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -19,11 +19,14 @@ const register = async (req, res) => {
                     message:"User already registered with this email"
                 })
             }
-        const salt = bcrypt.genSalt(12)
-        const hashed = bcrypt.hash(password, salt)
+            
+            
+            // 3. create user
+            const user = await User.create({name, email, password});
+            
+            const token = jwt.sign({id: user.id},process.env.JWT_SECRET || '6f3abd43771ded04b78d9d77269677a3819cc3c9f8ce7f5966dbbaeeb624c1df',{expiresIn:"1d"})
+            res.cookie('token', token)
 
-        // 3. create user
-        const user = await User.create({name, email, password:hashed});
         res.status(201).json({
             message:"User created",
             user:user
